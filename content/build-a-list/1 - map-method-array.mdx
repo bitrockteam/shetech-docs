@@ -1,5 +1,32 @@
 ---
-title: Displaying an array using the .map method
-metaTitle: Displaying an array using the .map method
-metaDescription: Displaying an array using the .map method
+title: Trasformare un array in elementi
+metaTitle: Trasformare un array in elementi
+metaDescription: Trasformare un array in elementi
 ---
+
+
+In questo esempio concatenato due metodi sul nostro array, prima filtrandolo trovando solo i favoriti, e poi trasformando il nostro array di oggetti in elementi JSX. Abbiamo dato la speciale prop `key` a `li` per rendere React consapevole di ogni elemento; senza di questa, quando la lista viene cambiata React sarebbe costretto a ricaricare l'intera lista non sapendo quale degli elementi manipolare.
+
+```jsx
+    function mostraFavoriti(contatto) {
+        return contatto.favorito; // true o false
+    }
+
+    function elementoContatto(contatto) {
+        /* Restituiamo un elemento che React può mostrare */
+        /* Notare la prop key */
+        return (
+            <li key={contatto.surname + ' ' + contatto.name}>
+                {contatto.name} {contatto.surname}
+            </li>
+        );
+    }
+
+    {...}
+
+    <ul>
+        {listaContatti.filter(mostraFavoriti).map(elementoContatto)}
+    </ul>
+
+    {...}
+```

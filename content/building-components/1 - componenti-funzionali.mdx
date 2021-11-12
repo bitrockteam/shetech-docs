@@ -1,0 +1,38 @@
+---
+title: Componenti funzionali
+metaTitle: Componenti funzionali
+metaDescription: Componenti funzionali
+---
+
+Un componente funzionale è fondamentalmente una funzione che ritorna del JSX. Ad esempio questo è un valido componente:
+
+```jsx
+function ContainerForm ({ title, description, children }) {
+    return (
+        <form>
+            <h2>{title}</h2>
+            <h3>{description}</h3>
+            {children}
+            <submit />
+        </form>
+    );
+}
+```
+
+Possiamo anche definire il componente assegnando una funzione anonima con la freccia a una costante:
+
+```jsx
+const Container = ({ title, description, children }) => (
+    <div>
+        <h2>{title}</h2>
+        <h3>{description}</h3>
+        {children}
+    </div>
+)
+```
+
+Possiamo richiamarlo all'interno di altri componenti con la stessa notazione che usiamo per gli elementi HTML. Se il suo nome inizia con la maiuscola il nostro editor capirà che si tratta di un componente e lo colorerà come tale.
+
+```jsx
+<Container>{/* ..... */}</Container>
+```

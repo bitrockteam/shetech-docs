@@ -4,3 +4,35 @@ title: JSX
 metaTitle: JSX
 metaDescription: JSX
 ---
+
+Il JSX è una sintassi speciale inventata da Facebook per React per semplificarci la scrittura dei nostri componenti. Il JSX non è compreso naturalmente dai browser, ma deve essere tradotto in istruzioni e chiamate di funzione per essere interpretato ed eseguito.
+
+JSX è compatibile con l'HTML ma fino a un certo punto - tutti gli attributi sono scritti in camelCase invece che kebab-case per collaborare meglio con la sintassi JavaScript, e l'attributo class diventa className poichè class è riservato alle classi JavaScript. Nel JSX possiamo richiamare elementi HTML comuni, come p, span, a, div... Oppure richiamare componenti React, i cui nomi per convenzione iniziano con la lettera maiuscola.
+
+Ecco un esempio di HTML generato a partire da un ipotetico JSX dove appare più o meno tutta la varietà della sua sintassi:
+
+```jsx
+<div className="container">
+    <span>Oggi è il {(new Date()).getDate()}</span>
+    <article className="post" dataPostValue={post.id}>
+        <h2 style={ { color: "red", border: "1px solid red", fontSize: "1.5em" } }>{post.title}</h2>
+        <p>{post.description}</p>
+        <Commenti postId={post.id} />
+    </article>
+</div>
+```
+
+```html
+<div class="container">
+    <span>Oggi è il 31</span>
+    <article class="post" data-post-value="1234">
+        <h2 style="color: red; border: 1px solid red; font-size: 1.5em">Questo è un titolo</h2>
+        <p>Questa è la descrizione dell'articolo</p>
+        <ul class="commenti">
+            <li>
+                <b>Mario ha detto:</b> Ciao!
+            </li>
+        </ul>
+    </article>
+</div>
+```

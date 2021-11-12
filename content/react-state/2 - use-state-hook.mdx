@@ -1,5 +1,43 @@
 ---
-title: The useState Hook
-metaTitle: The useState Hook
-metaDescription: The useState Hook
+title: Lo useState Hook
+metaTitle: Lo useState Hook
+metaDescription: Lo useState Hook
 ---
+
+Se vogliamo invece che il nostro componente si accorga che qualcosa cambia, usiamo una funzione speciale di React chiamata hook. In questo caso l'hook che usiamo si chiama _useState_.
+
+```jsx
+function InputNome () {
+    const [nome, cambiaNome] = useState("");
+    /* ... */
+}
+```
+
+- per prima cosa dichiariamo due variabili, chiuse da parentesi quadre; a sinistra, il nome della nostra informazione, a destra il nome della funzione per cambiarla.
+- perchè le parentesi quadre? _useState_ ci restituisce la variabile e la funzione come un array di due elementi; mettendo le quadre a sinistra, possiamo decostruire questo array in due variabili diverse, più semplici da gestire di _nome[0]_ e _nome[1]()_.
+- a destra, useState: nelle sue parentesi tonde mettiamo la informazione iniziale che avrà il nostro stato - possiamo mettere stringhe, array o oggetti.
+
+Adesso agganciamo la funzione che cambia il contenuto della stringa nel nostro evento al cambiamento dell'input:
+
+```jsx
+function InputNome () {
+    const [nome, cambiaNome] = useState("");
+
+    if (contenuto) {
+        console.log("Abbiamo scritto qualcosa!");
+    }
+
+    return (
+        <div>
+            <input
+                name="nome"
+                onChange={e => { cambiaNome(e.target.value); }}
+            />
+            {/* Visualizziamo un avvertimento se il nostro campo è vuoto: */}
+            {contenuto.length < 0 ? "Campo obbligatorio!" : ""}
+        </div>
+    );
+}
+```
+
+Adesso il componente si comporterà come ci aspettiamo.

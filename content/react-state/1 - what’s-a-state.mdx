@@ -1,5 +1,35 @@
 ---
-title: Defining "state"
-metaTitle: Defining "state"
-metaDescription: Defining "state"
+title: Definiamo lo stato
+metaTitle: Definiamo lo stato
+metaDescription: Definiamo lo stato
 ---
+
+Possiamo immaginare lo stato come una serie di informazioni che il nostro componente mostra e che passa ai suoi figli, ma che soprattutto tiene per se e che rappresenta il suo "stato", un po' come possiamo mettere un interruttore nella posizione off (false) o on (true). Queste informazioni si comportano come i props, e come i props, quando cambiano fanno rileggere a React il componente e quindi causano il cosidetto "render". Possiamo quindi dire che gli stati siano il modo con cui React gestisce la sua dinamicità.
+
+Se mettiamo il nostro stato in semplici variabili, o addirittura in variabili che vivono al di fuori del nostro applicativo (ad esempio un attributo di un oggetto globale come document o window), React non sa quando questo cambia e non potrà applicare i cambiamenti correttamente.
+
+Facciamo un esempio con un input:
+
+```jsx
+/* Attenzione, questo componente non funziona correttamente! */
+function InputNome () {
+    let contenuto = "";
+
+    if (contenuto) {
+        console.log("Abbiamo scritto qualcosa!");
+    }
+
+    return (
+        <div>
+            <input
+                name="nome"
+                onChange={e => { contenuto = e.target.value; }}
+            />
+            {/* Visualizziamo un avvertimento se il nostro campo è vuoto: */}
+            {contenuto.length < 0 ? "Campo obbligatorio!" : ""}
+        </div>
+    );
+}
+```
+
+Perchè il nostro componente non nasconde l'avvertimento quando abbiamo scritto del testo? Perchè, come detto prima, i nostri componenti sono solo le "ricette" che producono l'HTML, ma non c'è nessun legame fra la funzione stessa e quello che vediamo sulla pagina. A maggior ragione possiamo vedere nella nostra console che non è stata chiamata la funzione fra le parentesi. Proprio come una ricetta reale insomma, dopo che abbiamo rotto quattro uova e unite al resto degli ingredienti, non possiamo tornare indietro e deciderne che ne vogliamo otto; dovremo proprio ricominciare tutto.

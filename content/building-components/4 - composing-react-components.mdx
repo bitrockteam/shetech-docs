@@ -1,5 +1,31 @@
 ---
-title: Complex components with composition
-metaTitle: Complex components with composition
-metaDescription: Complex components with composition
+title: La prop children
+metaTitle: La prop children
+metaDescription: La prop children
 ---
+
+La prop speciale _children_ ci consente di dare al nostro componente dei figli con i quali però non comunicherà in modo diretto. Questo è molto utile quando si creano dei componenti decorativi (ad esempio box con bordi e spaziature, formattazione del testo...); non sempre infatti ai genitori serve sapere come sono fatti i figli, e questo rende i genitori facilmente riusabili, permettendoci di ricomporre vari componenti che condividono caratteristiche in comune.
+
+Ad esempio il nostro container con titolo e descrizione potrebbe essere usato sia per contenere del testo o un form:
+
+```jsx
+<Container
+    title={"Grande titolo in cima"}
+    description={"Testo minore sotto"}>
+    <p>
+        {/* Testo del nostro articolo */}
+        <b>Lorem</b> ipsum dolor sit amet...
+    </p>
+</Container>
+```
+
+```jsx
+<Container
+    title={"Form contatti"}>
+    <form>
+        <input name="nome" />
+        <input name="cognome" />
+        <submit />
+    </form>
+</Container>
+```

@@ -1,0 +1,12 @@
+---
+title: Attenzione alle regole degli hook!
+metaTitle: Attenzione alle regole degli hook!
+metaDescription: Attenzione alle regole degli hook!
+---
+
+Usando _useState_ potrebbe non riguardarci ma dobbiamo tenere conto di un paio di regole ogni qual volta che usiamo queste speciali funzioni di React (che iniziano per _use_). Visto che React tiene traccia di queste in base all'ordine in cui le usiamo, se le mettiamo in un blocco condizionale (if/else) React perderà l'ordine e ci avvertirà che potrebbero verificarsi degli errori. Inoltre, funzionano solo con i componenti funzionali; se proveremo a usarli in un componente classe non funzioneranno e React ci emetterà l'errore nella console.
+
+Quindi:
+
+- mai cambiarne l'ordine mettendoli in un if-else, loop, chiamate recursive...
+- mai usarli in una classe

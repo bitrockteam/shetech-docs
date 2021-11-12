@@ -1,0 +1,24 @@
+---
+title: Operatori brevi && e ||
+metaTitle: Operatori brevi && e ||
+metaDescription: Operatori brevi && e ||
+---
+
+Non potendo usare le clausole condizionali if/else nel nostro blocco JSX, possiamo mostrare condizionalmente del contenuto usando gli operatori AND (&&) e OR (||). JavaScript valuterà nell'ordine gli elementi a destra e sinistra degli operatori, e mostrerà il valore a destra solo nel caso in cui il valore a sinistra sia vero (nel caso di &&) o falso (nel caso di ||).
+
+```jsx
+    function InputNome () {
+        let [nome, setNome] = useState("");
+
+        const nameTooShort = nome.length === 1;
+        const inputNotEmpty = nome.length > 1;
+
+        return (
+            <>
+                <input onChange={e => setNome(e.target.value)} name="nome" />
+                {nameTooShort && <b>Il tuo nome è troppo breve!</b>}
+                {!inputNotEmpty || <b>Il campo è obbligatorio!</b>}
+            </>
+        )
+    }
+```

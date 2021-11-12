@@ -1,5 +1,19 @@
 ---
-title: "Props: from parent to children"
-metaTitle: "Props: from parent to children"
-metaDescription: "Props: from parent to children"
+title: Comporre l'albero di React
+metaTitle: Comporre l'albero di React
+metaDescription: Comporre l'albero di React
 ---
+
+Una applicazione React è fatta di tanti componenti composti per creare un unico albero fatto di varie parti, in cui i rami rappresentano la parentela fra un componente e l'altro.
+
+La creazione di componenti con all'interno altri componenti, per realizzare applicativi più complessi e particolareggiati, viene chiamata __composizione__. Quando usiamo un componente all'interno di un altro componente, lo chiamiamo _figlio_; il componente che lo richiama è il _genitore_. Figlio e genitore comunicano fra loro con il passaggio dal padre al figlio di __props__.
+
+Le props sono l'argomento principale che diamo alla nostra funzione. Nello scorso esempio, tutto quello che veniva all'interno della parentesi graffa (un vero e proprio oggetto che noi abbiamo scomposto) rappresentava i nostri props. Le applichiamo ai nostri componenti esattamente come diamo degli attributi agli elementi HTML.
+
+```jsx
+<Container title={"Modulo di informazioni"} description={"Lorem ipsum dolor sit amet..."}></Container>
+```
+
+```jsx
+<Container title={1900} description={"Il secolo breve"}></Container>
+```

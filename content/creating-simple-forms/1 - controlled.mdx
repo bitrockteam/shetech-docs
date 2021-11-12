@@ -1,0 +1,39 @@
+---
+title: Controllare i form
+metaTitle: Controllare i form
+metaDescription: Controllare i form
+---
+
+Quando finora abbiamo letto l'evento onChange degli input abbiamo fatto un passo avanti verso l'approccio "controllato" ai form. Per "controllare" i nostri input andiamo a cambiare quello che mostrano, salvando il loro contenuto in uno stato.
+
+```jsx
+    function InputNome () {
+        let [nome, setNome] = useState("");
+
+        function handleChange(event) {
+            event.preventDefault();
+            let inputValue = event.target.value;
+            inputValue = filterNumbers(inputValue);
+            inputValue = filterSymbols(inputValue);
+            setNome(inputvalue);
+        }
+
+        return (
+            <>
+                <input onChange={handleChange} name="nome" value={inputValue} />
+            </>
+        )
+    }
+```
+
+Nella funzione `handleChange` andiamo a sostituire il comportamento del campo filtrando il suo valore da simboli e numeri, e andiamo a salvare questo nuovo valore nello stato; cambiando lo stato causiamo un nuovo render del nostro componente e React andrà a sostituire il valore di `value`, cioè il prop che controlla il contenuto del form, con il nostro nuovo risultato. Per dare un valore iniziale al nostro campo, possiamo mettere il valore iniziale nell'argomento di useState.
+
+```jsx
+    let [nome, setNome] = useState("Fede");
+```
+
+Possiamo anche notare che se omettiamo di dare un metodo `onChange`, React ci avvertirà che l'input non può essere cambiato. Se pensiamo di popolare inizialmente il campo dando un valore a input, dovremo usare il prop `defaultValue`.
+
+```jsx
+    <input onChange={handleChange} name="nome" defaultValue={"Fede"} />
+```

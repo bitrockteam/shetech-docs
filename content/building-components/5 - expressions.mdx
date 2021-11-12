@@ -1,0 +1,37 @@
+---
+title: Blocchi espressione
+metaTitle: Blocchi espressione
+metaDescription: Blocchi espressione
+---
+
+Possiamo anche dare al nostro componente una espressione JavaScript, che qui per semplicità possiamo definire come qualsiasi cosa generalmente scriviamo nella definizione di una variabile alla destra dell'operatore di assegnamento (=).
+
+```jsx
+<Container>
+    {/* Mostriamo la data di oggi generandola al volo */}
+    {"Oggi è il " + (new Date()).toUTC() }
+</Container>
+```
+
+```jsx
+<Container
+    title={"Elenco della spesa"}
+    description={[
+        /* stringhe */
+        "latte",
+        /* elementi */
+        <p>uova</p>,
+        /* altri componenti? */
+        <MacbookPro model={2021} isBlack />,
+        /* espressioni */
+        (lattine * numeroOspiti) + " lattine di cola"
+    ]}
+/>
+```
+
+Se non vogliamo passare dei figli possiamo omettere la chiusura:
+
+```jsx
+<Container title={"Questo è solo un titolo"} />
+```
+

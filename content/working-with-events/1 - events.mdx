@@ -1,0 +1,21 @@
+---
+title: Anatomia dell'evento
+metaTitle: Anatomia dell'evento
+metaDescription: Anatomia dell'evento
+---
+
+Per interagire con gli eventi, creiamo delle funzioni di callback come questa:
+
+```jsx
+    function handleEvent(event) {...}
+```
+
+e passiamole al prop appropriato all'evento che vogliamo gestire:
+
+```jsx
+    <button onClick={handleEvent} />
+```
+
+Quando clicchiamo il _button_ viene scatenato l'evento onclick e la funzione _handleEvent_ richiamata.
+
+L'oggetto passato come argomento possiede una serie di metodi e attributi per interagire con l'elemento e l'evento stesso. In particolare usiamo l'evento _preventDefault()_ per evitare che venga scatenato l'evento nativo del browser (ad esempio sovrascrivere l'effetto di un link ipertestuale) e _stopPropagation()_ per evitare che l'evento si diffonda a elementi inferiori.

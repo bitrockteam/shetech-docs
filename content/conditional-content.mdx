@@ -1,6 +1,41 @@
 ---
-slug: conditional-content
-title: Conditional Content
-metaTitle: Conditional Content
-metaDescription: Conditional Content
+title: Elementi condizionali in React: ternario, if/else e shortcuts
+metaTitle: Elementi condizionali in React: ternario, if/else e shortcuts
+metaDescription: Elementi condizionali in React: ternario, if/else e shortcuts
 ---
+
+Nell'esempio precedente abbiamo mostrato se il campo è compilato o meno mostrando una frase che ci dice che è obbligatorio:
+
+
+```jsx
+    {/* Visualizziamo un avvertimento se il nostro campo è vuoto: */}
+    {contenuto.length < 0 ? "Campo obbligatorio!" : ""}
+```
+
+Questo tipo di condizione è chiamata operatore ternario ed è formata da tre elementi:
+
+1. La condizione (il contenuto ha lunghezza maggiore di zero?)
+2. Il caso "vero" (il contenuto ha lunghezza maggiore di zero)
+3. Il caso "falso" (il contenuto non ha lunghezza maggiore di zero)
+
+```jsx
+    {condizione ? vero : falso}
+```
+
+Racchiudendolo fra graffe, lo includiamo nel nostro JSX come espressione, ed essendo una espressione che ha come risultato una stringa visualizzabile da React, verrà inclusa nella pagina correttamente. Possiamo fare lo stesso con numeri:
+
+```jsx
+    const numero = 3.12345;
+    const devoArrotondare = true;
+    {...}
+    {devoArrotondare ? arrotondaNumero(numero) : numero} // 3;
+```
+
+E anche con elementi JSX:
+
+```jsx
+    const mostraInDollari = true;
+    const cifra = 15;
+    {...}
+    {mostraInDollari ? <Dollari valore={cifra} /> : <Euro valore={cifra} />}
+```

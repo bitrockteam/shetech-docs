@@ -1,0 +1,45 @@
+---
+title: event.target: l'elemento che scatena l'evento
+metaTitle: event.target: l'elemento che scatena l'evento
+metaDescription: event.target: l'elemento che scatena l'evento
+---
+
+L'attributo target è un riferimento all'elemento attraverso cui potremo accedere alle caratteristiche dell'elemento, ad esempio il suo contenuto, dove si trova sulla pagina, che dimensioni ha... Qua leggiamo il suo contenuto e lo salviamo da qualche parte (dove? ne parliamo fra poco):
+
+```jsx
+    <input onChange={
+        event => salvaValore(event.target.value)
+    } />
+```
+
+#### Alcuni esempi di evento
+
+Un evento frequente è la gestione dell'invio di un form, che ci permette di accedere direttamente ai campi di input per leggerli, manipolarli e fare ciò che ci serve per inviare correttamente le informazioni:
+
+```jsx
+    <form onSubmit={handleSubmit} />
+```
+
+Ulteriori esempi di interazione con gli elementi sono eventi all'entrata, uscita o sovrapposizione del cursore, lettere e altri tasti della tastiera, focus e defocus, uso della clipboard (copia o incolla)...
+
+Ad esempio, passando il mouse sul campo potremmo cambiarne l'aspetto:
+
+```jsx
+    function handleEnter (event) {
+        event.target.style.border = "1px solid red";
+    }
+
+    function handleLeave (event) {
+        event.target.style.border = "";
+    }
+```
+
+```jsx
+    <input
+        name="nome"
+        onMouseEnter={handleEnter}
+        onMouseLeave={handleLeave}
+    />
+```
+
+Per creare cambiamenti stabili però usiamo di norma gli stati.

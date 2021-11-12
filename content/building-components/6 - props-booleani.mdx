@@ -1,0 +1,32 @@
+---
+title: Props booleani
+metaTitle: Props booleani
+metaDescription: Props booleani
+---
+
+Se scriviamo il nome del prop senza dargli alcuna informazione, implicitamente diciamo a React di dargli valore _true_.
+
+```jsx
+    const MessaggioPremio = ({ haiVinto }) => (
+        <b>
+            {haiVinto ? "hai vinto!" : "prova ancora!"}
+        </b>
+    );
+```
+
+```jsx
+    <MessaggioPremio haiVinto />
+    /* <b>hai vinto!</b> */
+```
+
+```jsx
+    <MessaggioPremio />
+    /* <b>prova ancora!</b> */
+```
+
+Per indicare il caso negativo dobbiamo essere espliciti:
+
+```jsx
+    <MessaggioPremio haiVinto={false} />
+    /* <b>hai vinto!</b> */
+```

@@ -1,5 +1,21 @@
 ---
-title: Using if/else inside JSX
-metaTitle: Using if/else inside JSX
-metaDescription: Using if/else inside JSX
+title: Usare if/else e JSX
+metaTitle: Usare if/else e JSX
+metaDescription: Usare if/else e JSX
 ---
+
+In alcuni casi ci viene comodo uscire dalla nostra funzione prima del necessario, quando magari dobbiamo mostrare un errore; questo è il classico caso in cui possiamo usare if nella nostra funzione. Le clausole condizionali funzionano correttamente al di fuori del blocco di JSX:
+
+```jsx
+    function grazie ({completatoCorrettamente = true}) {
+        if (!completatoCorrettamente) {
+            return (
+                <span className="errore">Qualcosa è andato storto</span>
+            )
+        }
+
+        return (
+            <span>Grazie per aver partecipato al sondaggio!</span>
+        )
+    }
+```

@@ -1,0 +1,31 @@
+---
+title: Non controllare i form
+metaTitle: Non controllare i form
+metaDescription: Non controllare i form
+---
+
+Se non vogliamo andare a controllare direttamente ogni input e invece affidarci alla funzionalità nativa di HTML, salvando tempo e fatica per molti campi, possiamo usare l'approccio indiretto non controllando i form. Possiamo fare questo andando ad esempio a leggere l'evento `onSubmit` dell'elemento form.
+
+```jsx
+    <form onSubmit={handleSubmit}>
+        <input name="nome" />
+        <input name="cognome" />
+        <input name="annoNascita" />
+        <input name="citta" />
+    </form>
+```
+
+```jsx
+    function handleSubmit(event) {
+        /* Evitiamo che l'evento ricarichi la pagina */
+        event.preventDefault();
+
+        const formData = FormData(event.target);
+        /* Accediamo ai valori usando formData.get(...), oppure andiamo a leggere i figli di questo elemento */
+        const inputs = Array.from(event.target.elements);
+        /* Facciamo quello che ci serve da JavaScript */
+        /* ad esempio: */ return sendForm(formData);
+    }
+```
+
+Oppure possiamo usare i ref.

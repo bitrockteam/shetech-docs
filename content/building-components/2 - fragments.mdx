@@ -1,0 +1,43 @@
+---
+title: Frammenti
+metaTitle: Frammenti
+metaDescription: Frammenti
+---
+
+React, per motivi di sintassi, ci chiede che i nostri componenti abbiamo sempre una singola radice e non multiple; va bene anche un array, purchè sia solo uno. Qualora vogliamo avere una serie di elementi senza un contenitore, possiamo racchiuderli nella speciale notazione "a diamante" `<></>`, che non è altro che un componente senza nome.
+
+SI:
+
+```jsx
+return (
+    <>
+        <h1>Titolo principale</h1>
+        <h2>Titolo secondario</h2>
+        <p>Testo</p>
+    </>
+)
+```
+
+NO:
+
+```jsx
+return (
+    <li>Mele</li>
+    <li>Arance</li>
+    <li>Limoni</li>
+)
+```
+
+Se il nostro editor si lamenta e cerca di riempire il nostro tag nuovo, possiamo anche usare il componente `<React.Fragment></React.Fragment>` di cui il "diamante" è una shortcut.
+
+SI:
+
+```jsx
+return (
+    <React.Fragment>
+        <img alt="avatar" src="..."/>
+        <b>Federico</b> <span>ha scritto...</span>
+        <quote>Ciao!<quote>
+    </React.Fragment>
+)
+```

@@ -1,0 +1,74 @@
+---
+title: Refs: un'ancora al mondo fuori da React
+metaTitle: Refs: un'ancora al mondo fuori da React
+metaDescription: Refs: un'ancora al mondo fuori da React
+---
+
+I ref sono un modo che React ci da per guardare senza limiti al di fuori del campo della nostra applicazione, leggere direttamente gli elementi HTML o utilizzare altre librerie e classi che non usano direttamente React. Sono definite dalla stessa documentazione come "l'uscita di sicurezza" quando avremo bisogno di evadere dalle sue regole.
+
+Riprendiamo in mano l'esempio precedente e colleghiamo un ref a uno dei campi del nostro form. Per prima cosa creiamolo nel corpo della funzione:
+
+```jsx
+    const inputNomeRef = useRef();
+```
+
+E quindi diamolo all'elemento di cui vogliamo leggere il contenuto:
+
+```jsx
+    <form onSubmit={handleSubmit}>
+        <input name="nome" ref={inputNomeRef} />
+        <input name="cognome" />
+        <input name="annoNascita" />
+        <input name="citta" />
+    </form>
+```
+
+Lo speciale prop `ref` funziona solo con l'HTML e ci permette di leggere direttamente l'elemento a cui è associato. Proviamo a usarlo per fermare l'invio se il campo nome è vuoto.
+
+```jsx
+    function handleSubmit(event) {
+        /* Evitiamo che l'evento ricarichi la pagina */
+        event.preventDefault();
+
+        /* Accediamo al valore attuale del nostro ref, che è un attributo del ref stesso e che in questo momento sta rappresentando il nostro elemento. */
+        const nameInput = inputNomeRef.current;
+        const nameValue = this.input.current.value;
+
+        if (nameValue.length === 0) return;
+
+        /* Prosegui se non è vuoto... */
+    }
+```
+
+I prop ci possono essere utili per tante cose oltre che leggere direttamente i nostri campi, come ad esempio richiamare una libreria per averla a disposizione nel nostro componente. Ecco un esempio di uso immaginario:
+
+```jsx
+    const [search, setSearch] = useState("");
+    const [results, setResults] = useState([]);
+    const searchRef = useRef(new SearchServiceClient());
+
+    function handleClick(event) {
+        event.preventDefault();
+
+        /* Ottiene la istanza attuale del client */
+        const client = searchRef.current;
+        /* Cerca i risultati */
+        const newResults = client.search(search);
+        /* Salva i risultati nello stato */
+        setResults(newResults);
+    }
+
+    return (
+        <div>
+            <form>
+                <input onChange={e => setSearch(e.target.value)} />
+                <button onClick={handleClick} />
+            </form>
+
+            <ul>
+                {/* Mostra i risultati nel componente... */}
+                {showResults(results)}
+            </ul>
+        </div>
+    );
+```
